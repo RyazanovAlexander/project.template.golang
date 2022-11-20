@@ -1,0 +1,13 @@
+apiVersion: skaffold/v2beta29
+kind: Config
+profiles:
+  - name: dependencies
+  - name: all
+    deploy:
+      helm:
+        releases:
+          - name: {{cookiecutter.deploy_release_name}}
+            namespace: {{cookiecutter.deploy_namespace}}
+            createNamespace: true
+            chartPath: .deploy/charts/microservice
+            upgradeOnChange: true

@@ -6,4 +6,5 @@ default:
 
 # Creates a new project.
 create:
+	@rm -rf {{GENDIR}}
 	@cookiecutter . -o {{GENDIR}}
