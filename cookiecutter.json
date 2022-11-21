@@ -1,0 +1,9 @@
+{
+    "project_name": "microservice",
+    "project_module": "github.com/RyazanovAlexander/microservice/v1",
+
+    "docker_registry_prefix_name": "docker.io/aryazanov",
+
+    "deploy_release_name": "microservice",
+    "deploy_namespace": "microservice"
+}

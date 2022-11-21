@@ -1,0 +1,36 @@
+name: Build and test source code
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:       
+  build-test:
+    runs-on: self-hosted
+    container:
+      image: {{cookiecutter.docker_registry_prefix_name}}/{{cookiecutter.project_name}}-ci-container:0.1
+{% raw -%}
+    environment: development
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Init container environment
+      run: |
+        just init
+
+    - name: Build source code
+      run: |
+        just build
+
+    - name: Run unit tests
+      run: |
+        just test
+
+    - name: Deploy microservice and dependencies in minikube
+      run: |
+        just SKAFFOLD_PROFILE=all minikube-run
+
+    - name: Run tests in minikube
+      run: |
+        just SKAFFOLD_PROFILE=all minikube-test
+{%- endraw %}
