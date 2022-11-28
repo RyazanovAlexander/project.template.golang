@@ -125,6 +125,3 @@ package-push-chart:
 # Updates the current repository to the latest template version.
 cruft-update:
 	@cruft update
-
-tmp-func:
-	@echo 1
